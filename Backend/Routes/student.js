@@ -44,6 +44,29 @@ router.get('/student/studentall',(req,res) =>{
     });
 });
 
+//Get a relevant Student
+
+router.get('/student/std/:id', (req,res) => {
+
+    let StudentID = req.params.id;
+
+    Students.findById(StudentID, (err,student) => {
+
+        if(err){
+            return res.status(400).json({
+                
+                success:false,
+                err
+            })
+        }
+
+        return res.status(200).json({
+            success:true,
+            ExistingStudent:student
+
+        });
+    });
+});
 
 //Update Student
 
@@ -89,4 +112,6 @@ router.delete('/student/deletestudent/:id', (req,res) => {
 });
 
 module.exports = router;
+
+
 
