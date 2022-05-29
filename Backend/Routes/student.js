@@ -1,6 +1,4 @@
 const express = require ('express');
-const { find } = require('../models/student');
-
 
 const Students = require('../models/student');
 
@@ -28,39 +26,49 @@ router.post('/student/add',(req,res) => {
      });
 });
 
-//get all students
-
-// router.get('/student/studentall',(req,res) =>{
-
-//     Students.find().exec((err,students) =>{
-//         if(err){
-//             return res.status(400).json({
-//                 error:err
-//           });
-//         }
-
-//         return res.status(200).json({
-//             success:true,
-//             existingPosts:students
-//         });
-//     });
-// });
+//Get All Students
 
 router.get('/student/studentall',(req,res) =>{
-    
+
     Students.find().exec((err,students) =>{
         if(err){
             return res.status(400).json({
-               
                 error:err
-            });
+          });
         }
 
         return res.status(200).json({
             success:true,
-            exeistingStudents:students
+            existingPosts:students
         });
     });
 });
 
+
+//Update Student
+
+router.put('/student/updatestudent/:id', (req,res) => {
+
+    Students.findByIdAndUpdate(
+        req.params.id,
+        {
+            $set:req.body
+        },
+
+        (err,student) =>{
+            if(err){
+                return res.status(400).json({
+                    error:err
+                });
+            }
+
+            return res.status(200).json({
+                success:"Student Updated sucessfully"
+
+            });
+        }
+    );
+});
+
 module.exports = router;
+
