@@ -113,5 +113,3 @@ router.delete('/student/deletestudent/:id', (req,res) => {
 
 module.exports = router;
 
-
-
