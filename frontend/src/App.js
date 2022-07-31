@@ -62,8 +62,54 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-          {
+      <div className='container'>
+        <p>All Students</p>
+
+        <table class="table">
+           <thead>
+              <tr>
+                <th scope="col">A</th>
+                <th scope="col">StudentName</th>
+                <th scope="col">UserName</th>
+                <th scope="col">Password</th>
+                <th scope="col">Email</th>
+                <th scope="col">MobileNumber</th>
+                <th scope="col">Nic</th>
+                <th scope="col">JoinDate</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Course</th>
+              </tr>
+           </thead>
+
+           <tbody>
+             {this.state.students.map((students,index) => (
+               <tr>
+                   <th scope="row">{index+1}</th>
+                    <td>{students.studentname}</td>
+                    <td>{students.username}</td>
+                    <td>{students.password}</td>
+                    <td>{students.email}</td>
+                    <td>{students.mobilenumber}</td>
+                    <td>{students.nic}</td>
+                    <td>{students.joindate}</td>
+                    <td>{students.gender}</td>
+                    <td>{students.course}</td>
+                    <td>
+                       <a class="btn btn-warning" href="@">
+                         <i className='fas fa-edit'></i>&nbsp;Edit
+                       </a>
+                      &nbsp;
+                       <a  class="btn btn-danger" href="@">
+                         <i class='far fa-trash-alt'></i>&nbsp;Delete
+                       </a>
+                    </td>
+               </tr>
+             ))}
+           </tbody>
+        </table>
+
+
+          {/* {
             this.state.students.map(students => (
                 <div>
                    <p>{students.studentname}</p>
@@ -78,7 +124,7 @@ class App extends Component {
                    
                 </div>
             ))
-          }
+          } */}
       </div>
     )
   }
